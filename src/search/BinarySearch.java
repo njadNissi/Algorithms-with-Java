@@ -1,5 +1,10 @@
 package search;
-
+/*  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * *
+*   Author: NJAD NISSI 安杰                                                                       *
+*   COMPUTER SCIENCE ENGINEER                                                                    *
+*   PROGRAMMER IN C, CPP, JAVA, PYTHON.                                                          *
+*   contact me at: njadnissi@gmail.com                                                           *
+** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 /**Binary search works only for sorted list of items.*/
 public class BinarySearch {
 
