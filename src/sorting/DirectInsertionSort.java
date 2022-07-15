@@ -6,9 +6,16 @@ package sorting;
  *   PROGRAMMER IN C, CPP, JAVA, PYTHON.                                                          *
  *   contact me at: njadnissi@gmail.com                                                           *
  ** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-public class DirectSorting {
+/**
+ * Insertion Sort or direct Insertion Sort:
+ *  (1) We divide the list into two parts: Sorted space () and unsorted space [].
+ *  (2) we select the first item of the unsorted space and insert it into the right
+ *      position (according to ascending or descending order) in the sorted space.
+ *  (3) Repeat the process until the unsorted space has no item left.
+ * */
+public class DirectInsertionSort {
 
-    static void sort(double[] numbers) {
+    static void sortAscendingOrder(double[] numbers) {
         int sortedElNo = 1; /**directly push the first element in the sorted space*/
 
         System.out.println("DIRECT INSERT SORTING\n(SORTED SPACE)  [UNSORTED SPACE]");
@@ -23,7 +30,28 @@ public class DirectSorting {
                     break;
                 }
             }
-            showStep(numbers, sortedElNo - 1, i);
+            showStep(numbers, sortedElNo - 1, i+1);
+
+            sortedElNo++;
+        }
+    }
+
+    static void sortDescendingOrder(double[] numbers) {
+        int sortedElNo = 1; /**directly push the first element in the sorted space*/
+
+        System.out.println("DIRECT INSERT SORTING\n(SORTED SPACE)  [UNSORTED SPACE]");
+        showStep(numbers, -1, 0);
+
+        for (int i = 0; i < numbers.length; i++) {
+
+            /**Move the current value from unsorted space to sorted space.*/
+            for (int j = 0; j < sortedElNo - 1; j++) {
+                if (numbers[i] > numbers[j]) {
+                    moveValue(numbers, i, j);
+                    break;
+                }
+            }
+            showStep(numbers, sortedElNo - 1, i+1);
 
             sortedElNo++;
         }
@@ -60,7 +88,8 @@ public class DirectSorting {
 
         double[] numbers = {255, 14, 73, 92, 20, 6, 10, 100, -11, 50, 0};
 
-        sort(numbers);
+        sortAscendingOrder(numbers);
+        sortDescendingOrder(numbers);
 
     }
 

@@ -8,28 +8,48 @@ package search;
 /**Binary search works only for sorted list of items.*/
 public class BinarySearch {
 
-    static int search(double[] numbers, double value){
-        boolean found = false;
+    static boolean getSearchResult(double[] numbers, int from, int to,  double value){
         int round = 0;
-        int start = 0;
-        int end = numbers.length - 1;
-        int middle = 0;
+        int start = from;
+        int end = to;
 
-        while(!found){
-            middle = (end + start) / 2;
+        while(start <= end){
+            int middle = start + (end - start) / 2;
+
             showStep(numbers, start, end, middle, round);
 
             if(numbers[middle] == value)
-                found = true;
+                return true;
             else if(numbers[middle] < value)
                 start = middle + 1;
-            else if(numbers[middle] > value)
+            else /**if(numbers[middle] > value)*/
                 end = middle - 1;
 
             round++;
         }
+        return false;
+    }
 
-        return middle;
+    static int getSearchIndex(double[] numbers, int from, int to,  double value){
+        int round = 0;
+        int start = from;
+        int end = to;
+
+        while(start <= end){
+            int middle = start + (end - start) / 2;
+
+            showStep(numbers, start, end, middle, round);
+
+            if(numbers[middle] == value)
+                return middle;
+            else if(numbers[middle] < value)
+                start = middle + 1;
+            else /**if(numbers[middle] > value)*/
+                end = middle - 1;
+
+            round++;
+        }
+        return -1;
     }
     static void showStep(double[] numbers, int start, int end, int mid, int round) {
         if(round == 0)
@@ -39,10 +59,7 @@ public class BinarySearch {
         System.out.println("------------------------------------------------------------------------------------------------------------------");
     }
 
-    public static void main(String[] args) {
-
-        double numbers[] = {-11, 0, 6, 10, 14, 20, 50, 73, 92, 100, 255};
-
+    static void showList(double[] numbers){
         /**print the sorted array*/
         System.out.print("Sorted List:{ ");
         for (int i = 0; i < numbers.length - 1; i++)
@@ -53,9 +70,21 @@ public class BinarySearch {
         for (int i = 0; i < numbers.length - 1; i++)
             System.out.print(i + "        ");
         System.out.println(numbers.length - 1);
+    }
+
+    public static void main(String[] args) {
+
+        double numbers[] = {-11, 0, 6, 10, 14, 20, 50, 73, 92, 100, 255};
+        double value = -11;
+
+       showList(numbers);
 
         /**Execute the search algorithm*/
-        search(numbers, 0);
+        boolean searchResult = getSearchResult(numbers, 0, numbers.length, value);
+        System.out.println("found " + value + "? : " + searchResult);
+
+        int searchIndex = getSearchIndex(numbers, 0, numbers.length, value);
+        System.out.println("found " + value + " at : " + searchIndex);
 
     }
 
